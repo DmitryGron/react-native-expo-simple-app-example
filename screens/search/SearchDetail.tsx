@@ -1,6 +1,6 @@
 import Constants from 'expo-constants';
 import React, { useEffect, useState } from 'react';
-import { StyleSheet, View, Text, Platform, ScrollView, SafeAreaView, ActivityIndicator, TextInput  } from 'react-native';
+import { StyleSheet, View, Text, Platform, ScrollView, SafeAreaView, ActivityIndicator, TextInput, TouchableOpacity  } from 'react-native';
 import { Card, Icon, Image, Button, AirbnbRating } from 'react-native-elements';
 import GoBackHeader from '../../components/header/GoBackHeader';
 import MapView from '../../components/map/MapView';
@@ -57,13 +57,35 @@ const SearchDetail: React.FC<any> = observer(({ navigation, route }) => {
                 top: 10,
           }}/>
           { person.tags.map( (tag: string) => <Text>{tag}</Text>)}
+          <Text style={{fontSize: 15, marginBottom: 5, marginTop: 10, alignItems: 'center'}}>Available</Text>
+          <Text style={{fontSize: 15, marginBottom: 5,  alignItems: 'center'}}>from: 01.04.2021 to: 29.07.2021</Text>
           </View>
+
+          <TouchableOpacity
+                    onPress={() =>navigation.navigate('Hire')}
+                  >
+                    <View
+                      style={styles.button}
+                    >
+                      <Text style={styles.buttonText}>Offer Work</Text>
+                    </View>
+          </TouchableOpacity>
+          <TouchableOpacity
+                    onPress={() =>navigation.navigate('Messages')}
+                  >
+                    <View
+                      style={styles.button}
+                    >
+                      <Text style={styles.buttonText}>Message</Text>
+                    </View>
+          </TouchableOpacity>
           <AirbnbRating
                 count={11}
                 reviews={['Terrible', 'Bad', 'Meh', 'OK', 'Good', 'Hmm...', 'Very Good', 'Wow', 'Amazing', 'Unbelievable', 'Jesus']}
                 defaultRating={person.rating}
                 size={20}
             />
+            
           <Text style={styles.description}>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
             </Text>
@@ -92,6 +114,19 @@ export default SearchDetail;
 const styles = StyleSheet.create({
     topSafeArea: {
         backgroundColor: '#f9f9f9',
+    },
+    button: {
+      marginTop: 20,
+      backgroundColor: '#fff',
+      padding: 15,
+      borderWidth: 2,
+      borderColor: '#050038',
+    },
+    buttonText: {
+      color: '#050038',
+      fontWeight: 'bold',
+      fontSize: 18,
+      textAlign: 'center',
     },
     postInput: {
       fontSize: 24,
