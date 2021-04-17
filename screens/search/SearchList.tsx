@@ -39,7 +39,7 @@ const PeopleList: React.FC<any> = observer(({navigation}) => {
     const [dataSource, setDataSource] = useState<any>([]);
     const [displayPeople, setDisplayPeople] = useState<any>([]);
     const [keyword, setKeyword] = useState('');
-    const [mapView, setMapView] = useState(false)
+    const [mapView, setMapView] = useState(true)
     const [searchParams, setSearchParams] = useState(getData('SearchList'));
     if (!store) throw Error('Store shouldn\'t be null');
 
@@ -66,10 +66,10 @@ const PeopleList: React.FC<any> = observer(({navigation}) => {
       <SafeAreaView style={styles.container}>
       <View style={styles.header}>
       <GoBackHeader navigation={navigation} />
-      <If condition={mapView===true}>
+      <If condition={mapView===false}>
       <Entypo style={styles.view} name="map" size={24} color="black" onPress={ChangeView} />
       </If>
-      <If condition={mapView===false}>
+      <If condition={mapView===true}>
       <MaterialIcons style={styles.view} name="grid-view" size={24} color="black" onPress={ChangeView}/>
       </If>
       </View>
@@ -115,6 +115,10 @@ const PeopleList: React.FC<any> = observer(({navigation}) => {
         />
       ) : (        
       <View style={styles.mapContainer}>
+        <Text
+        style={styles.itemText}>
+          <Feather name="search" size={24} color="black" /> To {searchParams.search} at {searchParams.where} on {searchParams.when.toDateString()}
+      </Text>
         <MapView
         style={styles.map}
         initialRegion={{

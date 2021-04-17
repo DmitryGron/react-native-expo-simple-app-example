@@ -6,6 +6,7 @@ import {
   TouchableOpacity,
   TextInput,
   StyleSheet,
+  Image,
   Platform,
 } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
@@ -20,6 +21,8 @@ import Constants from 'expo-constants';
 import { FontAwesome5 } from '@expo/vector-icons';
 import { Octicons } from '@expo/vector-icons';
 import If from '../If';
+import logo from '../../assets/iworkd.png';
+
 
 const Login: React.FC<any> = ({ wrong, onLoginHandler }) => {
 
@@ -49,8 +52,8 @@ const Login: React.FC<any> = ({ wrong, onLoginHandler }) => {
 
     <Formik
     initialValues={{
-      email: '',
-      password: '',
+      email: 'email',
+      password: 'password',
     }}
     onSubmit={onLoginHandler}
     validationSchema={validationLoginSchema}
@@ -65,7 +68,22 @@ const Login: React.FC<any> = ({ wrong, onLoginHandler }) => {
       touched,
       isValid,
     }) => (
-      <View style={{ padding: 30}}>
+      <View style={{ flex:1, justifyContent: 'center', padding: 30}}>
+        <Image
+            source={logo}
+            style={{
+              opacity: 1,
+              width: 340,
+              height: 90,
+              marginBottom: 20,
+            }}
+          />
+        <Text style={{
+            alignItems: 'center',
+            fontSize: 50,
+            fontWeight: 'bold',
+          }}
+        >Sign In</Text>
         <FormField
           field="email"
           label="Email"
@@ -82,7 +100,7 @@ const Login: React.FC<any> = ({ wrong, onLoginHandler }) => {
           label="Password"
           values={values}
           touched={touched}
-          placeholder="location"
+          placeholder="Password"
           errors={errors}
           handleChange={handleChange}
           handleBlur={handleBlur}
@@ -96,16 +114,52 @@ const Login: React.FC<any> = ({ wrong, onLoginHandler }) => {
             style={[
               styles.button,
               {
-                opacity: isLoginFormValid(isValid, touched) ? 1 : 0.5,
+                opacity: isLoginFormValid(isValid, touched) ? 1 : 1,
               },
             ]}
           >
-            <Text style={styles.buttonText}>SUBMIT</Text>
+            <Text style={styles.buttonText}>Sign In</Text>
           </View>
         </TouchableOpacity>
+        <Text
+          style={{
+            margin: 10,
+            alignSelf: 'center'
+    }}
+    >or use one of your social profiles </Text>
+        <View style={{
+          flexDirection: 'row',
+          justifyContent: 'space-between',
+          alignItems: 'center',  
+  }}>
+  <TouchableOpacity
+          onPress={() => handleSubmit()}
+          >
+          <View
+            style={[
+              styles.linkedin,
+            ]}
+          >
+            <Text style={styles.buttonText}>Linkedin</Text>
+          </View>
+        </TouchableOpacity><TouchableOpacity
+          onPress={() => handleSubmit()}
+          >
+          <View
+            style={
+              [
+              styles.facebook,
+            ]}
+          >
+            <Text style={styles.buttonText}>Facebook</Text>
+          </View>
+        </TouchableOpacity>
+  </View>
       </View>
     )}
   </Formik>
+  
+  
 </SafeAreaView>
   </>
     );
@@ -185,13 +239,29 @@ const styles = StyleSheet.create({
   },
   button: {
     marginTop: 20,
-    backgroundColor: '#fff',
+    backgroundColor: '#EC2761',
     padding: 15,
-    borderWidth: 2,
+    borderRadius: 5,
     borderColor: '#050038',
   },
+  linkedin: {
+    marginTop: 20,
+    padding: 15,
+    borderWidth: 0,
+    borderRadius: 5,
+    minWidth: 150,
+    backgroundColor: '#2A67B2',
+  },
+  facebook: {
+    marginTop: 20,
+    padding: 15,
+    borderWidth: 0,
+    borderRadius: 5,
+    minWidth: 150,
+    backgroundColor: '#434AB2',
+  },
   buttonText: {
-    color: '#050038',
+    color: '#ffffff',
     fontWeight: 'bold',
     fontSize: 18,
     textAlign: 'center',

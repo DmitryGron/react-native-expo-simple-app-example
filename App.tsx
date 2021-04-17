@@ -7,7 +7,9 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import filterImg from './assets/tabs/filter.png';
 import searchImg from './assets/tabs/magnifying-glass.png';
 import heartImg from './assets/tabs/heart.png';
+import profileImg from './assets/tabs/user.png';
 import dialogImg from './assets/tabs/dialog.png';
+import MyWork from './assets/tabs/deal.png';
 import Search from './screens/search/Search';
 import SearchList from './screens/search/SearchList';
 import { DataStoreProvider, useDataStore } from './store/context';
@@ -16,14 +18,21 @@ import SavedPeopleList from './screens/saved/SavedList';
 import {useRoute} from '@react-navigation/native';
 import Profile from './screens/Profile';
 import Chat from './screens/Chat';
+import Work from './screens/Work';
 
 const getImgSource = (name: string) => {
-    if (name === 'Search' || name === 'SearchResults') {
+  if (name === 'Search' || name === 'SearchResults') {
       return searchImg;
-   } else if (name === 'Messages') {
-      return dialogImg;
-   } else if (name === 'Saved') {
+  } else if (name === 'Messages') {
+    return dialogImg;
+  } else if (name === 'Saved') {
     return heartImg;
+  } else if (name === 'MyWork') {
+    return MyWork;
+  } else if (name === 'Saved') {
+    return heartImg;
+  } else if (name === 'Profile') {
+    return profileImg;
   }
 };
 
@@ -75,13 +84,13 @@ const App = () => {
     //     );
     //   }
     // },
-    tabBarButton: [
-      'Profile',
-    ].includes(route.name)
-      ? () => {
-          return null;
-        }
-      : undefined,
+    // tabBarButton: [
+    //   'Profile',
+    // ].includes(route.name)
+    //   ? () => {
+    //       return null;
+    //     }
+    //   : undefined,
   }); };
 
   const ProfileStackScreen = () => {
@@ -123,8 +132,10 @@ const App = () => {
         >
             <Tab.Screen name="Search" component={SearchStackScreen} />
             <Tab.Screen name="Saved" component={SavedStackScreen} />
+            <Tab.Screen name="MyWork" component={Work} />
             <Tab.Screen name="Messages" component={Chat} />
             <Tab.Screen name="Profile" component={ProfileStackScreen} />
+            
 
         </Tab.Navigator>
       </NavigationContainer>

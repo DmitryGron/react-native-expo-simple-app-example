@@ -21,6 +21,7 @@ import { FontAwesome5 } from '@expo/vector-icons';
 import { Octicons } from '@expo/vector-icons';
 import If from '../../components/If';
 import Login from '../../components/auth/AuthLogin';
+import HoursField from '../../components/search/HoursField';
 
 const  Search: React.FC<any> = observer(({navigation}: any) => {
   const store = useDataStore();
@@ -53,7 +54,6 @@ const  Search: React.FC<any> = observer(({navigation}: any) => {
 
   return (
       <>
-
       <If condition={Boolean(getLoggedIn()) === false}>
       <Login wrong={wrong} onLoginHandler={onLoginHandler}/>
       </If>
@@ -63,7 +63,6 @@ const  Search: React.FC<any> = observer(({navigation}: any) => {
         <StatusBar style="dark" />
         <View style={styles.header}>
         <TouchableOpacity>
-        <FontAwesome5 name="user-circle" size={24} color="black" onPress={handleProfilePress} />
       </TouchableOpacity>
 
       <TouchableOpacity>
@@ -86,7 +85,7 @@ const  Search: React.FC<any> = observer(({navigation}: any) => {
             <Formik
               initialValues={{
                 search: '',
-                where:   '',
+                where: '',
                 when: undefined,
               }}
               onSubmit={onSubmitHandler}
@@ -130,6 +129,15 @@ const  Search: React.FC<any> = observer(({navigation}: any) => {
                 <DateField
                     field="when"
                     label="when?"
+                    errors={errors}
+                    touched={touched}
+                    values={values}
+                    setFieldValue={setFieldValue}
+                   />
+
+                <HoursField
+                    field="hours"
+                    label="how long?"
                     errors={errors}
                     touched={touched}
                     values={values}
