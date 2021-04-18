@@ -55,9 +55,6 @@ const DateField: React.FC<any & FormikProps<FormFieldProps>> = ({
         <View>
           <Button onPress={() => showPicker('date')} title="Set date" />
         </View>
-        {/* <View>
-          <Button onPress={() => showPicker('time')} title="Set time" />
-        </View> */}
         <Text style={styles.date}>{values[field] ? values[field].toDateString() : ''}</Text>
 
         <DateTimePickerModal

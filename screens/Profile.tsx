@@ -131,6 +131,9 @@ const  Profile: React.FC<any> = observer(({navigation}: any) => {
             <MaterialIcons name="settings" size={40} color="black" />
             <Text style={{ fontSize: 20 }}> Settings </Text>
         </TouchableOpacity>
+
+        
+
         <Divider style={{ backgroundColor: 'black', marginBottom: 10, marginTop: 10 }} />
         </ScrollView>
       </>

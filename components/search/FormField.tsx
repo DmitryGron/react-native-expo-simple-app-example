@@ -29,7 +29,6 @@ const FormField: React.FC<any & FormikProps<FormFieldProps>> =({
   handleBlur,
 }) => {
 
-
   return (
     <View style={styles.formGroup}>
       <Text style={styles.label}>{label}</Text>

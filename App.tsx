@@ -17,8 +17,10 @@ import SearchDetail from './screens/search/SearchDetail';
 import SavedPeopleList from './screens/saved/SavedList';
 import {useRoute} from '@react-navigation/native';
 import Profile from './screens/Profile';
-import Chat from './screens/Chat';
 import Work from './screens/Work';
+import Login from './components/auth/AuthLogin';
+import ChatList from './screens/ChatList';
+import Chat from './screens/Chat';
 
 const getImgSource = (name: string) => {
   if (name === 'Search' || name === 'SearchResults') {
@@ -38,6 +40,7 @@ const getImgSource = (name: string) => {
 
 const App = () => {
   const Tab = createBottomTabNavigator();
+  const Stack = createStackNavigator();
   const SearchStack = createStackNavigator();
   const SavedStack = createStackNavigator();
   const FilterStack = createStackNavigator();
@@ -121,11 +124,17 @@ const App = () => {
     );
   };
 
-  return (
-    <DataStoreProvider>
-      <StatusBar style="dark" />
+  const ChatStackScreen = () => {
+    return (
+      <SearchStack.Navigator screenOptions={stackScreenOptions}>
+        <SearchStack.Screen name="ChatList" component={ChatList} />
+        <SearchStack.Screen name="Chat" component={Chat} />
+      </SearchStack.Navigator>
+    );
+  };
 
-      <NavigationContainer>
+  const AllTabs = () => {
+    return (
         <Tab.Navigator
           screenOptions={tabScreenOptions}
           tabBarOptions={tabBarOptions}
@@ -133,12 +142,27 @@ const App = () => {
             <Tab.Screen name="Search" component={SearchStackScreen} />
             <Tab.Screen name="Saved" component={SavedStackScreen} />
             <Tab.Screen name="MyWork" component={Work} />
-            <Tab.Screen name="Messages" component={Chat} />
+            <Tab.Screen name="Messages" component={ChatStackScreen} />
             <Tab.Screen name="Profile" component={ProfileStackScreen} />
-            
 
         </Tab.Navigator>
+    )
+  }
+
+  return (
+    <DataStoreProvider>
+      <StatusBar style="dark" />
+      <NavigationContainer>
+      <Stack.Navigator
+      screenOptions={{
+        headerShown: false
+      }}
+      >
+        <Stack.Screen name='Login' component={Login}/>
+        <Stack.Screen name='Home' component={AllTabs}/>
+      </Stack.Navigator>
       </NavigationContainer>
+     
     </DataStoreProvider>
   );
 };

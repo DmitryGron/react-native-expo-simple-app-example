@@ -21,7 +21,6 @@ import { FontAwesome5 } from '@expo/vector-icons';
 import { Octicons } from '@expo/vector-icons';
 import If from '../../components/If';
 import Login from '../../components/auth/AuthLogin';
-import HoursField from '../../components/search/HoursField';
 
 const  Search: React.FC<any> = observer(({navigation}: any) => {
   const store = useDataStore();
@@ -38,27 +37,8 @@ const  Search: React.FC<any> = observer(({navigation}: any) => {
     return isValid && Object.keys(touched).length !== 0;
   }
 
-  const handleProfilePress = () => {
-    navigation.navigate('Profile');
-  };
-
-  const onLoginHandler = (values: any) => {
-    const { email, password} = values;
-    // if ( email === 'admin@google.com' && password === 'admin') {
-    setLoggedIn(true);
-    navigation.navigate('Search');
-    // } else {
-        // setWrong(true);
-    // }
-  };
-
   return (
-      <>
-      <If condition={Boolean(getLoggedIn()) === false}>
-      <Login wrong={wrong} onLoginHandler={onLoginHandler}/>
-      </If>
-      <If condition={Boolean(getLoggedIn()) === true}>
-        <>
+    <>
       <SafeAreaView style={styles.topSafeArea} />
         <StatusBar style="dark" />
         <View style={styles.header}>
@@ -134,15 +114,18 @@ const  Search: React.FC<any> = observer(({navigation}: any) => {
                     values={values}
                     setFieldValue={setFieldValue}
                    />
-
-                <HoursField
-                    field="hours"
-                    label="how long?"
-                    errors={errors}
-                    touched={touched}
-                    values={values}
-                    setFieldValue={setFieldValue}
-                   />
+                <FormField
+                  field="hours"
+                  label="How many hours?"
+                  autoCapitalize="words"
+                  values={values}
+                  touched={touched}
+                  keyboardType={'numeric'}
+                  placeholder="hours"
+                  errors={errors}
+                  handleChange={handleChange}
+                  handleBlur={handleBlur}
+                />
 
                   <TouchableOpacity
                     disabled={!isFormValid(isValid, touched)}
@@ -164,10 +147,6 @@ const  Search: React.FC<any> = observer(({navigation}: any) => {
             </Formik>
           </KeyboardAwareScrollView>
         </SafeAreaView>
-        </>
-      </If>
-
-
       </>
     );
   });

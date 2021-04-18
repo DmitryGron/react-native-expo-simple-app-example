@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   SafeAreaView,
   View,
@@ -24,7 +24,23 @@ import If from '../If';
 import logo from '../../assets/iworkd.png';
 
 
-const Login: React.FC<any> = ({ wrong, onLoginHandler }) => {
+const Login: React.FC<any> = ({ navigation,wrong }) => {
+  const store = useDataStore();
+  const { setData, setLoggedIn, getLoggedIn } = store;
+
+  const onLoginHandler = (values: any) => {
+    const { email, password} = values;
+    // if ( email === 'admin@google.com' && password === 'admin') {
+    setLoggedIn(true);
+    navigation.navigate('Home');
+    // } else {
+        // setWrong(true);
+    // }
+  };
+
+  useEffect(() => {
+    Boolean(getLoggedIn()) === true && navigation.navigate('Home');
+  }, [getLoggedIn, navigation])
 
   const isLoginFormValid = (isValid: any, touched: any) => {
     return isValid && Object.keys(touched).length !== 0;

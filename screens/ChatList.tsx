@@ -37,18 +37,32 @@ const ChatList: React.FC<any> = observer(({navigation}) => {
 
   return (
     <>
+
         <SafeAreaView style={styles.topSafeArea} />
         <StatusBar style="dark" />
         <View style={styles.header}>
         <GoBackHeader navigation={navigation} />
         </View>
-    <GiftedChat
-      messages={messages}
-      onSend={messages => onSend(messages)}
-      user={{
-        _id: 1,
-      }}
-    />
+
+     <ListItem
+        bottomDivider={true}
+        onPress={() =>  navigation.navigate("Chat")}
+      >
+        <Avatar
+          source={{uri:'https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=634&q=80'}}
+          size="medium"
+        />
+
+        <ListItem.Content>
+          <ListItem.Title>Marcus</ListItem.Title>
+
+          <ListItem.Subtitle style={styles.listItemSubtitle}>
+            #
+          </ListItem.Subtitle>
+        </ListItem.Content>
+
+        <View style={{ flexDirection: "row" }}></View>
+      </ListItem>
     </>
     
   );
