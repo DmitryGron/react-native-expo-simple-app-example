@@ -194,7 +194,7 @@ const styles = StyleSheet.create({
     backgroundColor: CONTENT_BACKGROUND,
   },
   headerText: {
-    color: '#fff',
+    color: '#f9f9f9',
     fontSize: 18,
   },
   content: {

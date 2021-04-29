@@ -21,6 +21,7 @@ import Work from './screens/Work';
 import Login from './components/auth/AuthLogin';
 import ChatList from './screens/ChatList';
 import Chat from './screens/Chat';
+import Hire from './screens/Hire';
 
 const getImgSource = (name: string) => {
   if (name === 'Search' || name === 'SearchResults') {
@@ -110,7 +111,9 @@ const App = () => {
         <SearchStack.Screen name="Search" component={Search} />
         <SearchStack.Screen name="SearchList" component={SearchList} />
         <SearchStack.Screen name="SearchDetail" component={SearchDetail} />
+        <SearchStack.Screen name="Hire" component={Hire} />
         <SearchStack.Screen name="Profile" component={Profile} />
+        <SearchStack.Screen name="Chat" component={Chat} />
       </SearchStack.Navigator>
     );
   };
@@ -118,7 +121,7 @@ const App = () => {
   const SavedStackScreen = () => {
     return (
       <SearchStack.Navigator screenOptions={stackScreenOptions}>
-        <SearchStack.Screen name="Search" component={SavedPeopleList} />
+        <SearchStack.Screen name="SavedPeopleList" component={SavedPeopleList} />
         <SearchStack.Screen name="SearchDetail" component={SearchDetail} />
       </SearchStack.Navigator>
     );

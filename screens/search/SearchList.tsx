@@ -115,10 +115,6 @@ const PeopleList: React.FC<any> = observer(({navigation}) => {
         />
       ) : (        
       <View style={styles.mapContainer}>
-        <Text
-        style={styles.itemText}>
-          <Feather name="search" size={24} color="black" /> To {searchParams.search} at {searchParams.where} on {searchParams.when.toDateString()}
-      </Text>
         <MapView
         style={styles.map}
         initialRegion={{
@@ -227,7 +223,7 @@ const styles = StyleSheet.create({
       backgroundColor: '#f9f9f9',
     },
     itemText: {
-
+      marginBottom: 20,
       color: '#000000',
       fontSize: 18,
     },
@@ -236,13 +232,12 @@ const styles = StyleSheet.create({
     },
     mapContainer: {
       flex: 1,
-      backgroundColor: '#fff',
+      backgroundColor: '#f9f9f9',
       alignItems: 'center',
       justifyContent: 'center',
     },
     map: {
-      marginTop: 200,
       width: Dimensions.get('window').width,
-      height: 900,
+      height: Dimensions.get('window').height - 200,
     },
   });

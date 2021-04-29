@@ -95,6 +95,17 @@ const  Profile: React.FC<any> = observer(({navigation}: any) => {
             alignItems: 'center',
             paddingLeft: 60,
         }}>
+            <MaterialIcons name="payments" size={40} color="black" />
+            <Text style={{ fontSize: 20 }}> Payments and payouts </Text>
+        </TouchableOpacity>
+        <Divider style={{ backgroundColor: 'black', marginBottom: 10, marginTop: 10 }} />
+        <TouchableOpacity
+        onPress={() => console.log('')}
+        style={{
+            flexDirection: 'row',
+            alignItems: 'center',
+            paddingLeft: 60,
+        }}>
             <FontAwesome name="bell" size={40} color="black" />
             <Text style={{ fontSize: 20 }}> Reviews </Text>
         </TouchableOpacity>
@@ -131,9 +142,17 @@ const  Profile: React.FC<any> = observer(({navigation}: any) => {
             <MaterialIcons name="settings" size={40} color="black" />
             <Text style={{ fontSize: 20 }}> Settings </Text>
         </TouchableOpacity>
-
-        
-
+        <Divider style={{ backgroundColor: 'black', marginBottom: 10, marginTop: 10 }} />
+        <TouchableOpacity
+        onPress={() => console.log('')}
+        style={{
+                flexDirection: 'row',
+                alignItems: 'center',
+                paddingLeft: 60,
+            }}>
+            <MaterialIcons name="logout" size={40} color="black" />
+            <Text style={{ fontSize: 20 }}> Log out </Text>
+        </TouchableOpacity>
         <Divider style={{ backgroundColor: 'black', marginBottom: 10, marginTop: 10 }} />
         </ScrollView>
       </>

@@ -7,6 +7,7 @@ import {
     Text,
     TouchableOpacity,
     ActivityIndicator,
+    ScrollView,
   } from 'react-native';
 import Constants from 'expo-constants';
 import { Image } from 'react-native-elements';
@@ -14,6 +15,8 @@ import GoBackHeader from '../components/header/GoBackHeader';
 import { Feather } from '@expo/vector-icons';
 import { observer } from 'mobx-react-lite';
 import { Rating } from 'react-native-elements';
+import { StatusBar } from 'expo-status-bar';
+import { FontAwesome, MaterialIcons, Ionicons, SimpleLineIcons } from '@expo/vector-icons';
 
 const formatData = (data: any[], numColumns: number) => {
     const numberOfFullRows = Math.floor(data.length / numColumns);
@@ -30,14 +33,57 @@ const formatData = (data: any[], numColumns: number) => {
 const MyWork: React.FC<any> = observer(({navigation}) => {
 
     return (
-      <SafeAreaView>
-      <SafeAreaView style={styles.container}>
-      <View style={styles.header}>
-      <GoBackHeader navigation={navigation} />
-      </View>
-      <Text style={styles.hiText}>MyWork</Text>
-      </SafeAreaView>
-      </SafeAreaView>
+      <>
+        <SafeAreaView style={styles.topSafeArea} />
+        <StatusBar style="dark" />
+        <View style={styles.header}>
+        <GoBackHeader navigation={navigation} />
+        </View>
+        <ScrollView style={{ flex: 1, backgroundColor: '#f9f9f9' }}>
+        <Text style={{
+            alignItems: 'center',
+            fontSize: 40,
+            fontWeight: 'bold',
+            marginLeft: 10,
+          }}
+        >MyWork</Text>
+        <View style={{
+            flexDirection: 'row',
+            justifyContent: 'center',
+            alignItems: 'center',
+            backgroundColor: '#a0e0fa' ,
+            borderRadius: 5,
+            marginRight: 30,
+            marginLeft: 30,
+            padding: 5,
+            borderWidth: 1,
+            borderColor: '#7e7c7c', 
+        }}>
+            <TouchableOpacity
+              onPress={() => console.log('')}>
+              <View style={{
+                padding: 5,
+                borderRadius: 5,
+                borderWidth: 2,
+                borderColor: '#302e2e',
+                backgroundColor : '#1f98e94',
+                marginRight: 20,
+                flexDirection: 'row' }}>
+                <Text style={{ fontSize: 20 }}>Work in progress</Text>
+              </View>
+            </TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => console.log('')}>
+            <View style={{ marginRight: 20, flexDirection: 'row' }}>
+              <Text style={{ fontSize: 20 }}>Past Projects</Text>
+            </View>
+          
+        </TouchableOpacity>
+            
+        </View>
+        </ScrollView>
+ 
+      </>
     );
   });
 
@@ -45,7 +91,6 @@ export default MyWork;
 
 const styles = StyleSheet.create({
   topSafeArea: {
-    flex: 1,
     paddingTop: Constants.statusBarHeight,
     backgroundColor: '#f9f9f9',
   },
