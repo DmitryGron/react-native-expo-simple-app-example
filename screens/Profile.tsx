@@ -10,31 +10,16 @@ import {
   ActivityIndicator,
   ScrollView,
 } from 'react-native';
-import { Card, Icon, Image, Button, AirbnbRating } from 'react-native-elements';
+import { Image, Icon } from 'react-native-elements';
 import { StatusBar } from 'expo-status-bar';
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-import { FontAwesome, MaterialIcons, Ionicons, SimpleLineIcons } from '@expo/vector-icons';
+import { FontAwesome, MaterialIcons, Ionicons, SimpleLineIcons, MaterialCommunityIcons } from '@expo/vector-icons';
 import { observer } from 'mobx-react-lite';
 import Constants from 'expo-constants';
-import FormField from '../components/search/FormField';
-import { validationLoginSchema } from '../components/search/validation';
 import { useDataStore } from '../store/context';
 import { Divider } from 'react-native-elements';
 import GoBackHeader from '../components/header/GoBackHeader';
 
 const  Profile: React.FC<any> = observer(({navigation}: any) => {
-  const store = useDataStore();
-  if (!store) throw Error('Store shouldn\'t be null');
-  const { setData } = store;
-
-  function onSubmitHandler(values: any) {
-    setData('SearchList', values);
-    navigation.navigate('SearchList');
-  }
-
-  function isFormValid(isValid: any, touched: any) {
-    return isValid && Object.keys(touched).length !== 0;
-  }
 
   return (
       <>
@@ -42,6 +27,12 @@ const  Profile: React.FC<any> = observer(({navigation}: any) => {
         <StatusBar style="dark" />
         <View style={styles.header}>
         <GoBackHeader navigation={navigation} />
+        <Icon
+            name="edit"
+            color="#080808"
+            size={24}
+            onPress={() => console.log(``)}
+          />
         </View>
         <ScrollView style={{ flex: 1, backgroundColor: CONTENT_BACKGROUND }}>
 
